@@ -1,0 +1,40 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "process",
+            "label": "Build complete game",
+            "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+            "args": [
+                "-std=c++17",
+                "-fdiagnostics-color=always",
+                "-Wall",
+                "-Wextra",
+                "-g",
+
+                "${workspaceFolder}\\src\\game.cpp",
+                "${workspaceFolder}\\src\\c.cpp",
+                "${workspaceFolder}\\src\\spell.cpp",
+                "${workspaceFolder}\\src\\enemy.cpp",
+                "${workspaceFolder}\\src\\factory.cpp",
+
+                "-I",
+                "${workspaceFolder}\\include",
+
+                "-o",
+                "${workspaceFolder}\\main.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Builds the complete game"
+        }
+    ]
+}
