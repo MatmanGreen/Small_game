@@ -16,7 +16,7 @@ Enemy::Enemy(
     int dex_stat,
     int speed
 )
-    : Chars(
+    : Character(
           std::move(name),
           hp,
           mp,

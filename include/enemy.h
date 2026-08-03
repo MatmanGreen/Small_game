@@ -3,7 +3,7 @@
 
 #include "c.h"
 
-class Enemy : public Chars
+class Enemy : public Character
 {
     private:
         std::string_view artwork_;

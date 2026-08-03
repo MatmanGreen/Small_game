@@ -5,11 +5,32 @@
 #include <vector>
 #include "spell.h"
 
-class Chars
+enum class BuffType
+{
+    Strength,
+    Intelligence,
+    Dexterity,
+    Speed
+};
+
+struct ActiveBuff
+{
+    BuffType type;
+    int value;
+    int remaining_turns;
+};
+
+struct ActiveDebuff
+{
+    BuffType type;
+    int value;
+    int remaining_turns;
+};
+
+class Character
 {
     private:
         std::string name_;
-        std::vector<Spell> spell_list_char_;
 
         int hp_;
         int mp_;
@@ -21,8 +42,16 @@ class Chars
         
         int speed_;
 
+        std::vector<DmgSpell> dmg_spells_;
+        std::vector<HealSpell> heal_spells_;
+        std::vector<BuffSpell> buff_spells_;
+        std::vector<DebuffSpell> debuff_spells_;
+
+        std::vector<ActiveBuff> active_buffs_;
+        std::vector<ActiveDebuff> active_debuffs_;
+
     public:
-        Chars(std::string name,
+        Character(std::string name,
             int hp = 100,
             int mp = 50,
             int sp = 50,
@@ -36,6 +65,9 @@ class Chars
         int get_hp() const;
         int get_mp() const;
         int get_sp() const;
+        int get_str_stat() const;
+        int get_int_stat() const;
+        int get_dex_stat() const;
         int get_speed() const;
 
         void set_hp(int hp);
@@ -48,11 +80,28 @@ class Chars
 
         void print_stats();
 
-        int spell_known(std::string name);
-        int spell_list_size() const;
-        void print_spell_list() const;
-        void add_spell(Spell& spell);
-        const Spell& get_spell(int index) const;
+        void get_dmg_spell_list() const;
+        void add_dmg_spell(DmgSpell& spell);
+        const DmgSpell& get_dmg_spell(int index) const;
+
+        void get_heal_spell_list() const;
+        void add_heal_spell(HealSpell& spell);
+        const HealSpell& get_heal_spell(int index) const;
+
+        void get_buff_spell_list() const;
+        void add_buff_spell(BuffSpell& spell);
+        const BuffSpell& get_buff_spell(int index) const;
+
+        void get_debuff_spell_list() const;
+        void add_debuff_spell(DebuffSpell& spell);
+        const DebuffSpell& get_debuff_spell(int index) const;
+
+        void get_all_spell_list() const;
+
+        void add_buff(BuffType type, int value, int duration);
+
+        //int spell_list_size() const;
+        //void print_spell_list() const;
 
         // STILL HAVE TO ADD THE ABILITY CLASS AND THE ABILITY VECTOR
         //void get_ability_list() const;

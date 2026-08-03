@@ -20,9 +20,16 @@
 
                 "-I",
                 "${workspaceFolder}\\include",
+                "-I",
+                "C:\\msys64\\ucrt64\\include",
 
                 "-o",
-                "${workspaceFolder}\\main.exe"
+                "${workspaceFolder}\\main.exe",
+
+                "-lraylib",
+                "-lopengl32",
+                "-lgdi32",
+                "-lwinmm"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -34,7 +41,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "Builds the complete game"
+            "detail": "Builds the complete game with raylib"
         }
     ]
 }

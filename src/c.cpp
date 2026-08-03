@@ -3,7 +3,7 @@
 using namespace std;
 
 
-Chars::Chars(std::string name,
+Character::Character(std::string name,
              int hp,
              int mp,
              int sp,
@@ -21,49 +21,127 @@ Chars::Chars(std::string name,
       speed_(speed)
 {}
 
-string Chars::get_name() const {return name_;}
+string Character::get_name() const {return name_;}
 
-int Chars::get_hp() const {return hp_;}
-int Chars::get_mp() const {return mp_;}
-int Chars::get_sp() const {return sp_;}
+int Character::get_hp() const {return hp_;}
+int Character::get_mp() const {return mp_;}
+int Character::get_sp() const {return sp_;}
 
-int Chars::get_speed() const {return speed_;}
+int Character::get_str_stat() const 
+{
+    int bonus = 0;
+    for(size_t i = 0; i < active_buffs_.size(); i++)
+    {
+        if(active_buffs_[i].type == BuffType::Strength)
+        {
+            bonus += active_buffs_[i].value;
+        }
+    }
+    return str_+bonus;
+}
+int Character::get_int_stat() const 
+{
+    int bonus = 0;
+    for(size_t i = 0; i < active_buffs_.size(); i++)
+    {
+        if(active_buffs_[i].type == BuffType::Intelligence)
+        {
+            bonus += active_buffs_[i].value;
+        }
+    }
+    return int_+bonus;
+}
+int Character::get_dex_stat() const 
+{
+    int bonus = 0;
+    for(size_t i = 0; i < active_buffs_.size(); i++)
+    {
+        if(active_buffs_[i].type == BuffType::Dexterity)
+        {
+            bonus += active_buffs_[i].value;
+        }
+    }
+    return dex_+bonus;
+}
+int Character::get_speed() const
+{
+    {
+    int bonus = 0;
+    for(size_t i = 0; i < active_buffs_.size(); i++)
+    {
+        if(active_buffs_[i].type == BuffType::Speed)
+        {
+            bonus += active_buffs_[i].value;
+        }
+    }
+    return speed_+bonus;
+}
 
-void Chars::set_hp(int hp) {hp_ = hp;}
-void Chars::set_mp(int mp) {mp_ = mp;}
-void Chars::set_sp(int sp) {sp_ = sp;}
+}
 
-void Chars::reduce_hp(int hp) {hp_ -= hp;}
-void Chars::reduce_mp(int mp) {mp_ -= mp;}
-void Chars::reduce_sp(int sp) {sp_ -= sp;}
+void Character::set_hp(int hp) {hp_ = hp;}
+void Character::set_mp(int mp) {mp_ = mp;}
+void Character::set_sp(int sp) {sp_ = sp;}
 
-void Chars::print_stats()
+void Character::reduce_hp(int hp) {hp_ -= hp;}
+void Character::reduce_mp(int mp) {mp_ -= mp;}
+void Character::reduce_sp(int sp) {sp_ -= sp;}
+
+void Character::print_stats()
 {
     cout << name_ << " (hp:" << hp_ <<", mp:" << mp_ << ", sp:" << sp_ << ")"; 
 }
 
-int Chars::spell_known(std::string name)
+
+void Character::get_dmg_spell_list() const
 {
-    for(size_t i = 0; i < spell_list_char_.size(); i++)
+    for(size_t i = 0; i < dmg_spells_.size(); i++)
     {
-        if(spell_list_char_[i].get_name() == name)
-            return i;
-    }
-    return -1;
-}
-int Chars::spell_list_size() const
-{
-    return spell_list_char_.size();
-}
-void Chars::print_spell_list() const
-{
-    for(size_t i = 0; i < spell_list_char_.size(); i++)
-    {
-        cout << i+1 << ": " << spell_list_char_[i].get_name() << endl;
+        cout << i << ": " << dmg_spells_[i].get_name() << endl;
     }
 }
-void Chars::add_spell(Spell& spell)
+void Character::add_dmg_spell(DmgSpell& spell){dmg_spells_.push_back(spell);}
+const DmgSpell& Character::get_dmg_spell(int index) const{return dmg_spells_[index];}
+
+void Character::get_heal_spell_list() const
 {
-    spell_list_char_.push_back(spell);
+    for(size_t i = 0; i < heal_spells_.size(); i++)
+    {
+        cout << i << ": " << heal_spells_[i].get_name() << endl;
+    }
 }
-const Spell& Chars::get_spell(int index) const {return spell_list_char_.at(index);}
+void Character::add_heal_spell(HealSpell& spell){heal_spells_.push_back(spell);}
+const HealSpell& Character::get_heal_spell(int index) const{return heal_spells_[index];}
+
+void Character::get_buff_spell_list() const
+{
+    for(size_t i = 0; i < buff_spells_.size(); i++)
+    {
+        cout << i << ": " << buff_spells_[i].get_name() << endl;
+    }
+}
+void Character::add_buff_spell(BuffSpell& spell){buff_spells_.push_back(spell);}
+const BuffSpell& Character::get_buff_spell(int index) const{return buff_spells_[index];}
+
+void Character::get_debuff_spell_list() const
+{
+    for(size_t i = 0; i < debuff_spells_.size(); i++)
+    {
+        cout << i << ": " << debuff_spells_[i].get_name() << endl;
+    }
+}
+void Character::add_debuff_spell(DebuffSpell& spell){debuff_spells_.push_back(spell);}
+const DebuffSpell& Character::get_debuff_spell(int index) const{return debuff_spells_[index];}
+
+void Character::get_all_spell_list() const
+{
+    get_dmg_spell_list();
+    get_heal_spell_list();
+    get_buff_spell_list();
+    get_debuff_spell_list();
+}
+
+void Character::add_buff(BuffType type, int value, int duration)
+{
+    active_buffs_.push_back({type, value, duration});
+}

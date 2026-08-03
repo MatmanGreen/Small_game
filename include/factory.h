@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "enemy.h"
+#include "spell.h"
 
 std::vector<Enemy> create_monsters();
 
