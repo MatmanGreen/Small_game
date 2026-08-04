@@ -56,7 +56,7 @@ void HealSpell::action(Character& caster, Enemy&)
 
 BuffSpell::BuffSpell(std::string name, 
             int value, 
-            std::string type,
+            BuffType type,
             int cost, 
             float chance)
             : Spell (name,
@@ -74,7 +74,7 @@ void BuffSpell::action(Character& caster, Enemy&)
 
 DebuffSpell::DebuffSpell(std::string name, 
             int value, 
-            std::string type,
+            BuffType type,
             int cost, 
             float chance)
             : Spell (name,

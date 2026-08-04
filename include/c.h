@@ -4,28 +4,7 @@
 #include <string>
 #include <vector>
 #include "spell.h"
-
-enum class BuffType
-{
-    Strength,
-    Intelligence,
-    Dexterity,
-    Speed
-};
-
-struct ActiveBuff
-{
-    BuffType type;
-    int value;
-    int remaining_turns;
-};
-
-struct ActiveDebuff
-{
-    BuffType type;
-    int value;
-    int remaining_turns;
-};
+#include "utility.h"
 
 class Character
 {
@@ -74,6 +53,10 @@ class Character
         void set_mp(int mp);
         void set_sp(int sp);
 
+        void add_hp(int hp);
+        void add_mp(int mp);
+        void add_sp(int sp);
+
         void reduce_hp(int hp);
         void reduce_mp(int mp);
         void reduce_sp(int sp);
@@ -82,18 +65,22 @@ class Character
 
         void get_dmg_spell_list() const;
         void add_dmg_spell(DmgSpell& spell);
+        int get_dmg_list_size();
         const DmgSpell& get_dmg_spell(int index) const;
 
         void get_heal_spell_list() const;
         void add_heal_spell(HealSpell& spell);
+        int get_heal_list_size();
         const HealSpell& get_heal_spell(int index) const;
 
         void get_buff_spell_list() const;
         void add_buff_spell(BuffSpell& spell);
+        int get_buff_list_size();
         const BuffSpell& get_buff_spell(int index) const;
 
         void get_debuff_spell_list() const;
         void add_debuff_spell(DebuffSpell& spell);
+        int get_debuff_list_size();
         const DebuffSpell& get_debuff_spell(int index) const;
 
         void get_all_spell_list() const;

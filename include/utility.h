@@ -12,11 +12,38 @@ inline constexpr std::string_view ACTIONS = R"ART(
 [1] ATTACK     [2] ABILITY 
 [3] SPELL      [4] ITEM    
 )ART";
+
+inline constexpr std::string_view SPELLTYPES = R"ART(
+[1] DAMAGE     [2] HEAL 
+[3] BUFF       [4] DEBUFF    
+)ART";
 }
 
 void clear()
 {
     std::cout << "\033[2J\033[H";
 }
+
+enum class BuffType
+{
+    Strength,
+    Intelligence,
+    Dexterity,
+    Speed
+};
+
+struct ActiveBuff
+{
+    BuffType type;
+    int value;
+    int remaining_turns;
+};
+
+struct ActiveDebuff
+{
+    BuffType type;
+    int value;
+    int remaining_turns;
+};
 
 #endif

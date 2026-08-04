@@ -4,6 +4,7 @@
 class Character;
 class Enemy;
 #include <string>
+#include "utility.h"
 
 class Spell
 {
@@ -59,29 +60,30 @@ class HealSpell : public Spell
 class BuffSpell : public Spell
 {
     private:
-        std::string type_;
+        BuffType type_;
     public:
         BuffSpell(
             std::string name,
             int value,
-            std::string type,
+            BuffType type,
             int cost,
             float chance
         );
 
         virtual void action(Character& caster, Enemy& target) override;
+        BuffType get_type
 
 };
 
 class DebuffSpell : public Spell
 {
     private:
-        std::string type_;
+        BuffType type_;
     public:
         DebuffSpell(
             std::string name,
             int value,
-            std::string type,
+            BuffType type,
             int cost,
             float chance
         );
