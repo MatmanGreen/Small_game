@@ -19,11 +19,6 @@ inline constexpr std::string_view SPELLTYPES = R"ART(
 )ART";
 }
 
-void clear()
-{
-    std::cout << "\033[2J\033[H";
-}
-
 enum class BuffType
 {
     Strength,

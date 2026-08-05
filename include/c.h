@@ -15,6 +15,10 @@ class Character
         int mp_;
         int sp_;
 
+        int max_hp_;
+        int max_mp_;
+        int max_sp_;
+
         int str_;
         int int_;
         int dex_;
@@ -44,6 +48,11 @@ class Character
         int get_hp() const;
         int get_mp() const;
         int get_sp() const;
+
+        void set_max_hp(int hp);
+        void set_max_mp(int mp);
+        void set_max_sp(int sp);
+
         int get_str_stat() const;
         int get_int_stat() const;
         int get_dex_stat() const;
@@ -53,9 +62,11 @@ class Character
         void set_mp(int mp);
         void set_sp(int sp);
 
+        /*
         void add_hp(int hp);
         void add_mp(int mp);
         void add_sp(int sp);
+        */
 
         void reduce_hp(int hp);
         void reduce_mp(int mp);
@@ -86,6 +97,7 @@ class Character
         void get_all_spell_list() const;
 
         void add_buff(BuffType type, int value, int duration);
+        void add_debuff(BuffType type, int value, int duration);
 
         //int spell_list_size() const;
         //void print_spell_list() const;

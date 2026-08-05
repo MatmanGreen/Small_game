@@ -32,7 +32,15 @@ Enemy::Enemy(
 
 void Enemy::print_artwork() const
 {
-    
     std::cout << artwork_ << '\n';
-    cout << get_name() << " HP: " << get_hp() << endl;
+    cout << get_name() << " has " << get_hp() << " hp" << endl;
+}
+
+string_view Enemy::get_artwork() const {return artwork_;}
+
+ostream& operator<<(ostream& stream, Enemy& enemy)
+{
+    stream << enemy.get_artwork() << endl 
+    << enemy.get_name() << " has " << enemy.get_hp() << " hp";
+    return stream;
 }

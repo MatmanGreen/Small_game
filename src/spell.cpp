@@ -5,22 +5,10 @@
 Spell::Spell(std::string name, int value, int cost, float chance): 
     name_(name), value_(value), cost_(cost), chance_(chance) {}
 
-std::string Spell::get_name() const
-{
-    return name_;
-}
-int Spell::get_value() const
-{
-    return value_;
-}
-int Spell::get_cost() const
-{
-    return cost_;
-}
-float Spell::get_chance() const
-{
-    return chance_;
-}
+std::string Spell::get_name() const {return name_;}
+int Spell::get_value() const {return value_;}
+int Spell::get_cost() const {return cost_;}
+float Spell::get_chance() const {return chance_;}
 
 DmgSpell::DmgSpell(std::string name, 
             int value, 
@@ -66,10 +54,13 @@ BuffSpell::BuffSpell(std::string name,
             type_(type)
 {
 } 
+
+int BuffSpell::get_duration() const {return duration_;}
 void BuffSpell::action(Character& caster, Enemy&)
 {
-
+    caster.add_buff(get_bufftype(), get_value(), get_duration());
 }
+BuffType BuffSpell::get_bufftype() const {return type_;}
 
 
 DebuffSpell::DebuffSpell(std::string name, 
@@ -84,3 +75,10 @@ DebuffSpell::DebuffSpell(std::string name,
             type_(type)
 {
 } 
+
+int DebuffSpell::get_duration() const {return duration_;}
+void DebuffSpell::action(Character&, Enemy& target)
+{
+    target.add_debuff(get_debufftype(), get_value(), get_duration());
+}
+BuffType DebuffSpell::get_debufftype() const {return type_;}

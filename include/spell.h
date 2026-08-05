@@ -61,6 +61,7 @@ class BuffSpell : public Spell
 {
     private:
         BuffType type_;
+        int duration_;
     public:
         BuffSpell(
             std::string name,
@@ -70,8 +71,9 @@ class BuffSpell : public Spell
             float chance
         );
 
+        int get_duration() const;
         virtual void action(Character& caster, Enemy& target) override;
-        BuffType get_type
+        BuffType get_bufftype() const;
 
 };
 
@@ -79,6 +81,7 @@ class DebuffSpell : public Spell
 {
     private:
         BuffType type_;
+        int duration_;
     public:
         DebuffSpell(
             std::string name,
@@ -88,7 +91,9 @@ class DebuffSpell : public Spell
             float chance
         );
 
+        int get_duration() const;
         virtual void action(Character& caster, Enemy& target) override;
+        BuffType get_debufftype() const;
 
 };
 #endif

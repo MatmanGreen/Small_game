@@ -12,20 +12,28 @@ Character::Character(std::string name,
              int dex_stat,
              int speed)
     : name_(name),
-      hp_(hp),
-      mp_(mp),
-      sp_(sp),
+      max_hp_(hp),
+      max_mp_(mp),
+      max_sp_(sp),
       str_(str_stat),
       int_(int_stat),
       dex_(dex_stat),
       speed_(speed)
-{}
+{
+    hp_ = max_hp_;
+    mp_ = max_mp_;
+    sp_ = max_sp_;
+}
 
 string Character::get_name() const {return name_;}
 
 int Character::get_hp() const {return hp_;}
 int Character::get_mp() const {return mp_;}
 int Character::get_sp() const {return sp_;}
+
+void Character::set_max_hp(int hp) {max_hp_ = hp;}
+void Character::set_max_mp(int mp) {max_mp_ = mp;}
+void Character::set_max_sp(int sp) {max_sp_ = sp;}
 
 int Character::get_str_stat() const 
 {
@@ -76,13 +84,32 @@ int Character::get_speed() const
     return speed_+bonus;
 }
 
-void Character::set_hp(int hp) {hp_ = hp;}
-void Character::set_mp(int mp) {mp_ = mp;}
-void Character::set_sp(int sp) {sp_ = sp;}
-
+void Character::set_hp(int hp) 
+{
+    if(max_hp_ < hp)
+        hp_ = max_hp_;
+    else
+        hp_ = hp;
+}
+void Character::set_mp(int mp) 
+{
+    if(max_mp_ < mp)
+        mp_ = max_mp_;
+    else
+        mp_ = mp;
+}
+void Character::set_sp(int sp)
+{
+    if(max_sp_ < sp)
+        sp_ = max_sp_;
+    else
+        sp_ = sp;
+}
+/*
 void Character::add_hp(int hp) {hp_ += hp;}
 void Character::add_mp(int mp) {mp_ += mp;}
 void Character::add_sp(int sp) {sp_ += sp;}
+*/
 
 void Character::reduce_hp(int hp) {hp_ -= hp;}
 void Character::reduce_mp(int mp) {mp_ -= mp;}
@@ -93,7 +120,7 @@ void Character::print_stats()
     cout << name_ << " (hp:" << hp_ <<", mp:" << mp_ << ", sp:" << sp_ << ")"; 
 }
 
-
+// Spells 
 void Character::get_dmg_spell_list() const
 {
     for(size_t i = 0; i < dmg_spells_.size(); i++)
@@ -149,4 +176,8 @@ void Character::get_all_spell_list() const
 void Character::add_buff(BuffType type, int value, int duration)
 {
     active_buffs_.push_back({type, value, duration});
+}
+void Character::add_debuff(BuffType type, int value, int duration)
+{
+    active_debuffs_.push_back({type, value, duration});
 }

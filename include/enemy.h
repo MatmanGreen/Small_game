@@ -1,6 +1,7 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+#include <iostream>
 #include "c.h"
 
 class Enemy : public Character
@@ -9,18 +10,20 @@ class Enemy : public Character
         std::string_view artwork_;
     public:
         Enemy(
-        std::string name,
-        std::string_view artwork,
-        int hp = 100,
-        int mp = 50,
-        int sp = 50,
-        int str_stat = 5,
-        int int_stat = 5,
-        int dex_stat = 5,
-        int speed = 5
-    );
+            std::string name,
+            std::string_view artwork,
+            int hp = 100,
+            int mp = 50,
+            int sp = 50,
+            int str_stat = 5,
+            int int_stat = 5,
+            int dex_stat = 5,
+            int speed = 5
+            );
 
     void print_artwork() const;
+    std::string_view get_artwork() const;
+    friend std::ostream& operator<<(std::ostream& stream, Enemy& enemy);
 };
 
 #endif
