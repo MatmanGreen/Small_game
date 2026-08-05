@@ -1,0 +1,21 @@
+Character
+    o general spell vector with std::unique_ptr and std::make_unique
+
+Monster
+    o enum class Monster with static_cast<size_t> for easier handling with monsters vector
+
+Fight dynamics
+    o using clear for better 
+    o integration of turn based system
+    o looking into monster ai
+
+Field
+    o generation 3D map with ASCII (https://codegolf.stackexchange.com/questions/177893/dungeon-crawler)
+    o first low lvl and easy 2D layout
+
+Spells
+    o better buff and debuff integration with character target and caster as well as enemy target and caster
+
+
+Far future
+    o training an deep learning on how to play the game and balance the game
