@@ -1,6 +1,8 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
+class Character;
+
 #include <string_view>
 #include <string>
 #include <iostream>

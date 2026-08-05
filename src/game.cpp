@@ -1,7 +1,6 @@
 #include <iostream>
 #include "c.h"
 #include "factory.h"
-#include "utility.h"
 
 #include "raylib.h"
 
@@ -9,9 +8,16 @@ using namespace std;
 
 void clear()
 {
-    std::cout << "\033[2J\033[H";
+    cout << "\033[2J\033[H";
 }
 
+inline string char_stats(Character& character)
+{
+    return character.get_name() + ":\n" + 
+    "[hp] " + to_string(character.get_hp()) + "\n" + 
+    "[mp] " + to_string(character.get_mp()) + "\n" +
+    "[sp] " + to_string(character.get_sp()) + "\n";
+}
 
 void attack(Character& attacker, Enemy& target)
 {
@@ -141,22 +147,21 @@ void action(Character& attacker, Enemy& target)
 void fight(Character& Char, Enemy& enemy)
 {
     cout << enemy << endl;
-    action(Char, enemy);
-    //clear();
-    cout << enemy << endl;
-    /*
-    while(enemy.get_hp() >= 0)
+    cout <<  char_stats(Char) << endl;
+
+    while(enemy.get_hp() > 0)
     {
         action(Char, enemy);
-        clear();
+        //clear();
         cout << enemy << endl;
+        cout <<  char_stats(Char) << endl;
     }
-    */
+
+    cout << "U won the fight" << endl;
 }
 
 int main()
 {
-
     Character C("M");
     DmgSpell fire_ball("fire ball", 10, 5, 1.0);
     C.add_dmg_spell(fire_ball);
