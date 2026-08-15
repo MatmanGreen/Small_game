@@ -5,6 +5,7 @@
 #include <vector>
 #include "spell.h"
 #include "utility.h"
+#include "ability.h"
 
 class Character
 {
@@ -24,6 +25,8 @@ class Character
         int dex_;
         
         int speed_;
+
+        std::vector<Ability> skill_list_;
 
         std::vector<DmgSpell> dmg_spells_;
         std::vector<HealSpell> heal_spells_;
@@ -73,6 +76,13 @@ class Character
         void reduce_sp(int sp);
 
         void print_stats();
+
+        
+        void get_skill_list() const;
+        void add_skill(Ability& skill);
+        int get_skill_list_size();
+        const Ability& get_skill(int index);
+
 
         void get_dmg_spell_list() const;
         void add_dmg_spell(DmgSpell& spell);

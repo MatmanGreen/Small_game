@@ -16,6 +16,7 @@
                 "${workspaceFolder}\\src\\c.cpp",
                 "${workspaceFolder}\\src\\spell.cpp",
                 "${workspaceFolder}\\src\\enemy.cpp",
+                "${workspaceFolder}\\src\\ability.cpp",
                 "${workspaceFolder}\\src\\factory.cpp",
 
                 "-I",

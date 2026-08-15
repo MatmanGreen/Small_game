@@ -25,6 +25,28 @@ void attack(Character& attacker, Enemy& target)
     target.reduce_hp(attacker.get_str_stat());
 }
 
+void use_ability(Character& attacker, Enemy& target)
+{
+    if(attacker.get_skill_list_size() <= 0)
+        cout << "U dont have any abilitys" << endl;
+    else
+    {
+        int index = 0;
+        cout << "Which ability do u wanna use: " << endl;
+        attacker.get_skill_list();
+        cin >> index;
+        if(index < 0 || index > attacker.get_skill_list_size())
+            cout << "pls input a valid index" << endl;
+        else
+        {
+            Ability skill = attacker.get_skill(index);
+            attacker.reduce_sp(skill.get_cost());
+            target.reduce_hp(skill.get_value()+attacker.get_str_stat());
+            cout << skill.get_name() << " hit and did " << skill.get_value()+attacker.get_str_stat() << " dmg" << endl;
+        }
+    }
+}
+
 void cast_spell(Character& caster, Enemy& target)
 {
     int index = 0;
@@ -134,6 +156,9 @@ void action(Character& attacker, Enemy& target)
         case 1:
             attack(attacker, target);
             break;
+        case 2:
+            use_ability(attacker, target);
+            break;
         case 3:
             cast_spell(attacker, target);
             break;
@@ -163,10 +188,7 @@ void fight(Character& Char, Enemy& enemy)
 int main()
 {
     Character C("M");
-    DmgSpell fire_ball("fire ball", 10, 5, 1.0);
-    C.add_dmg_spell(fire_ball);
     vector<Enemy> monsters = create_monsters();
-    C.get_all_spell_list();
 
     fight(C, monsters[0]);
 }

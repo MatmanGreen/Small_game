@@ -1,6 +1,6 @@
 Character
     o general spell vector with std::unique_ptr and std::make_unique
-
+    o Leveling System with scaling difficulty
 Monster
     o enum class Monster with static_cast<size_t> for easier handling with monsters vector
 

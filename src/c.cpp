@@ -12,14 +12,14 @@ Character::Character(std::string name,
              int dex_stat,
              int speed)
     : name_(name),
-      max_hp_(hp),
-      max_mp_(mp),
-      max_sp_(sp),
       str_(str_stat),
       int_(int_stat),
       dex_(dex_stat),
       speed_(speed)
 {
+    max_hp_ = hp+dex_;
+    max_mp_ = mp+int_;
+    max_sp_ = sp+str_;
     hp_ = max_hp_;
     mp_ = max_mp_;
     sp_ = max_sp_;
@@ -119,6 +119,21 @@ void Character::print_stats()
 {
     cout << name_ << " (hp:" << hp_ <<", mp:" << mp_ << ", sp:" << sp_ << ")"; 
 }
+
+
+// Abilitys
+void Character::get_skill_list() const
+{
+    for (size_t i = 0; i < skill_list_.size(); i++)
+    {
+        cout << i << ": " << skill_list_[i].get_name() << endl;
+    }
+    
+}
+void Character::add_skill(Ability& skill){skill_list_.push_back(skill);}
+int Character::get_skill_list_size(){return skill_list_.size();}
+const Ability& Character::get_skill(int index) {return skill_list_[index];}
+
 
 // Spells 
 void Character::get_dmg_spell_list() const
