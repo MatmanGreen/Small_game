@@ -29,6 +29,13 @@ enum class BuffType
     Speed
 };
 
+enum class PotionType
+{
+    Hp,
+    Mp,
+    Sp
+};
+
 struct ActiveBuff
 {
     BuffType type;

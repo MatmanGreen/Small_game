@@ -16,6 +16,5 @@ Field
 Spells
     o better buff and debuff integration with character target and caster as well as enemy target and caster
 
-
 Far future
     o training an deep learning on how to play the game and balance the game
