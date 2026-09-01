@@ -3,15 +3,13 @@
 #include <iostream>
 using namespace std;
 
-Item::Item(int value, int amount): value_(value), amount_(amount) {}
+Item::Item(std::string name, int value): name_(name), value_(value) {}
 
 int Item::get_value() const{return value_;}
-int Item::get_amount() const{return amount_;}
 
 void Item::set_value(int value){value_ = value;}
-void Item::set_amount(int amount){amount_ = amount;}
 
-Potion::Potion(int value, int amount, int add, PotionType type): Item(value, amount), add_(add), type_(type) {}
+Potion::Potion(std::string name, int value, int add, PotionType type): Item(name, value), add_(add), type_(type) {}
 void Potion::consum(Character& consumer)
 {
     switch (type_)
@@ -30,3 +28,11 @@ void Potion::consum(Character& consumer)
             break;
     }
 }
+
+Equipment::Equipment(string name, int dura, int max_dura): name_(name), dura_(dura), max_dura_(max_dura) {}
+Equipment::Equipment(string name, vector<BuffType> buffs, int dura, int max_dura): name_(name), buffs_(buffs), dura_(dura), max_dura_(max_dura) {}
+std::string Equipment::get_name() const {return name_;}
+int Equipment::get_dura() const {return dura_;}
+int Equipment::get_max_dura() const {return max_dura_;}
+
+void Equipment::set_dura(int durability) {dura_ = durability;}

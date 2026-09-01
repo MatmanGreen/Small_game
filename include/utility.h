@@ -35,19 +35,4 @@ enum class PotionType
     Mp,
     Sp
 };
-
-struct ActiveBuff
-{
-    BuffType type;
-    int value;
-    int remaining_turns;
-};
-
-struct ActiveDebuff
-{
-    BuffType type;
-    int value;
-    int remaining_turns;
-};
-
 #endif

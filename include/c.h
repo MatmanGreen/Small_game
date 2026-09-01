@@ -25,6 +25,8 @@ class Character
         int dex_;
         
         int speed_;
+        int max_weight_;
+        int weight_;
 
         std::vector<Ability> skill_list_;
 
@@ -33,8 +35,8 @@ class Character
         std::vector<BuffSpell> buff_spells_;
         std::vector<DebuffSpell> debuff_spells_;
 
-        std::vector<ActiveBuff> active_buffs_;
-        std::vector<ActiveDebuff> active_debuffs_;
+        std::vector<Buff> active_buffs_;
+        std::vector<Buff> active_debuffs_;
 
     public:
         Character(std::string name,
@@ -60,6 +62,8 @@ class Character
         int get_int_stat() const;
         int get_dex_stat() const;
         int get_speed() const;
+        int get_max_weight() const;
+        int get_weight() const;
 
         void set_hp(int hp);
         void set_mp(int mp);
@@ -106,8 +110,8 @@ class Character
 
         void get_all_spell_list() const;
 
-        void add_buff(BuffType type, int value, int duration);
-        void add_debuff(BuffType type, int value, int duration);
+        void add_buff(Buff buff);
+        void add_debuff(Buff debuff);
 
         //int spell_list_size() const;
         //void print_spell_list() const;

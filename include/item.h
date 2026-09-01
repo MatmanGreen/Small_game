@@ -9,15 +9,15 @@ class Character;
 class Item
 {
     private:
+        std::string name_;
         int value_;
         int amount_;
     public:
-        Item(int value, int amount);
+        Item(std::string name, int value);
+        std::string get_name() const;
         int get_value() const;
-        int get_amount() const;
 
-        void set_value(int value);
-        void set_amount(int amount);
+        void set_value(int amount);
 };
 
 class Potion : public Item
@@ -26,8 +26,29 @@ class Potion : public Item
         int add_;
         PotionType type_;
     public:
-        Potion(int value, int amount, int add, PotionType type);
+        Potion(std::string name, int value, int add, PotionType type);
         void consum(Character& consumer);
 };
+
+class Equipment
+{
+    private:
+        std::string name_;
+        std::vector<BuffType> buffs_;
+        //std::vector<BuffType> debuffs_;
+        int dura_;
+        int max_dura_;
+    public:
+        Equipment(std::string name, int dura, int max_dura);
+        Equipment(std::string name, std::vector<BuffType> buffs, int dura, int max_dura);
+        std::string get_name() const;
+        void get_buffs() const;
+        int get_dura() const;
+        int get_max_dura() const;
+
+        void set_dura(int durability);
+};
+
+
 
 #endif

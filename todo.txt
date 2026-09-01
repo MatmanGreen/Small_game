@@ -1,6 +1,6 @@
 Character
-    o general spell vector with std::unique_ptr and std::make_unique
     o Leveling System with scaling difficulty
+
 Monster
     o enum class Monster with static_cast<size_t> for easier handling with monsters vector
 
@@ -15,6 +15,15 @@ Field
 
 Spells
     o better buff and debuff integration with character target and caster as well as enemy target and caster
+    o Fix issue with Buff class and BuffSpell & DebuffSpell classes (Issue with the type_ system)
 
-Far future
-    o training an deep learning on how to play the game and balance the game
+Item
+    o general Item system with using std::unique_ptr and std::make_unique
+    o system for Equipment weight
+    o add weight for a character scaling with dex
+
+
+
+Done:
+    ~ Potion class
+    ~ general spell vector with std::unique_ptr and std::make_unique

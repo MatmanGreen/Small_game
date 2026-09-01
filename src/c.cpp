@@ -23,6 +23,7 @@ Character::Character(std::string name,
     hp_ = max_hp_;
     mp_ = max_mp_;
     sp_ = max_sp_;
+    max_weight_ = 100 + dex_;
 }
 
 string Character::get_name() const {return name_;}
@@ -40,9 +41,9 @@ int Character::get_str_stat() const
     int bonus = 0;
     for(size_t i = 0; i < active_buffs_.size(); i++)
     {
-        if(active_buffs_[i].type == BuffType::Strength)
+        if(active_buffs_[i].get_bufftype() == BuffType::Strength)
         {
-            bonus += active_buffs_[i].value;
+            bonus += active_buffs_[i].get_value();
         }
     }
     return str_+bonus;
@@ -52,9 +53,9 @@ int Character::get_int_stat() const
     int bonus = 0;
     for(size_t i = 0; i < active_buffs_.size(); i++)
     {
-        if(active_buffs_[i].type == BuffType::Intelligence)
+        if(active_buffs_[i].get_bufftype() == BuffType::Intelligence)
         {
-            bonus += active_buffs_[i].value;
+            bonus += active_buffs_[i].get_value();
         }
     }
     return int_+bonus;
@@ -64,9 +65,9 @@ int Character::get_dex_stat() const
     int bonus = 0;
     for(size_t i = 0; i < active_buffs_.size(); i++)
     {
-        if(active_buffs_[i].type == BuffType::Dexterity)
+        if(active_buffs_[i].get_bufftype() == BuffType::Dexterity)
         {
-            bonus += active_buffs_[i].value;
+            bonus += active_buffs_[i].get_value();
         }
     }
     return dex_+bonus;
@@ -76,9 +77,9 @@ int Character::get_speed() const
     int bonus = 0;
     for(size_t i = 0; i < active_buffs_.size(); i++)
     {
-        if(active_buffs_[i].type == BuffType::Speed)
+        if(active_buffs_[i].get_bufftype() == BuffType::Speed)
         {
-            bonus += active_buffs_[i].value;
+            bonus += active_buffs_[i].get_value();
         }
     }
     return speed_+bonus;
@@ -188,11 +189,5 @@ void Character::get_all_spell_list() const
     get_debuff_spell_list();
 }
 
-void Character::add_buff(BuffType type, int value, int duration)
-{
-    active_buffs_.push_back({type, value, duration});
-}
-void Character::add_debuff(BuffType type, int value, int duration)
-{
-    active_debuffs_.push_back({type, value, duration});
-}
+void Character::add_buff(Buff buff) {active_buffs_.push_back(buff);}
+void Character::add_debuff(Buff debuff) {active_buffs_.push_back(debuff);}

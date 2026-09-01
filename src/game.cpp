@@ -114,7 +114,7 @@ void cast_spell(Character& caster, Enemy& target)
 
             BuffSpell spell = caster.get_buff_spell(index);
             caster.reduce_mp(spell.get_cost());
-            caster.add_buff(spell.get_bufftype(),spell.get_value(), spell.get_duration());
+            //caster.add_buff(spell.get_bufftype(), spell.get_value(), spell.get_duration());
         }
             break;
 
@@ -134,7 +134,7 @@ void cast_spell(Character& caster, Enemy& target)
 
             DebuffSpell spell = caster.get_debuff_spell(index);
             caster.reduce_mp(spell.get_cost());
-            caster.add_debuff(spell.get_debufftype(),spell.get_value(), spell.get_duration());
+            //caster.add_debuff(spell.get_debufftype(),spell.get_value(), spell.get_duration());
         }
             break;
         
@@ -179,7 +179,7 @@ void fight(Character& Char, Enemy& enemy)
         action(Char, enemy);
         //clear();
         cout << enemy << endl;
-        cout <<  char_stats(Char) << endl;
+        cout << char_stats(Char) << endl;
     }
 
     cout << "U won the fight" << endl;
@@ -189,6 +189,9 @@ int main()
 {
     Character C("M");
     vector<Enemy> monsters = create_monsters();
+    auto spells = create_spells();
+    vector<Potion> potions = create_potions();
 
-    fight(C, monsters[0]);
+    spells[static_cast<size_t>(SpellId::Fireball)]->get_name();
+    fight(C, monsters[static_cast<size_t>(MonsterId::Devil)]);
 }

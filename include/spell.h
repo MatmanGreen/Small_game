@@ -6,6 +6,23 @@ class Enemy;
 #include <string>
 #include "utility.h"
 
+class Buff
+{
+    private:
+        BuffType type_;
+        int value_;
+        int turns_left_;
+    public:
+        Buff(BuffType type, int value, int turns_left);
+
+        BuffType get_bufftype() const;
+        int get_value() const;
+        int get_turns_left() const;
+
+        bool is_active();
+        void tick();
+};
+
 class Spell
 {
     protected:
@@ -17,7 +34,7 @@ class Spell
         float chance_;
     public:
         Spell(std::string name, 
-            int dmg, 
+            int value, 
             int cost, 
             float chance
             );
@@ -60,40 +77,37 @@ class HealSpell : public Spell
 class BuffSpell : public Spell
 {
     private:
-        BuffType type_;
-        int duration_;
+        Buff buff_;
     public:
         BuffSpell(
             std::string name,
             int value,
-            BuffType type,
             int cost,
-            float chance
+            float chance,
+            Buff buff
         );
 
         int get_duration() const;
-        virtual void action(Character& caster, Enemy& target) override;
-        BuffType get_bufftype() const;
-
+        Buff& get_buff() const;
+        void action(Character& caster, Enemy& target);
 };
 
 class DebuffSpell : public Spell
 {
     private:
-        BuffType type_;
-        int duration_;
+        Buff debuff_;
     public:
         DebuffSpell(
             std::string name,
             int value,
-            BuffType type,
             int cost,
-            float chance
+            float chance,
+            Buff debuff
         );
 
         int get_duration() const;
-        virtual void action(Character& caster, Enemy& target) override;
-        BuffType get_debufftype() const;
-
+        Buff& get_debuff() const;
+        void action(Character& caster, Enemy& target);        
 };
+
 #endif
