@@ -91,6 +91,7 @@ void DebuffSpell::action(Character&, Enemy& target)
 BuffType DebuffSpell::get_debufftype() const {return type_;}
 */
 
+/*
 BuffSpell::BuffSpell(std::string name, int value, int cost, float chance, Buff buff):
     Spell(name, value, cost, chance), buff_(buff) {}
 
@@ -108,3 +109,4 @@ void DebuffSpell::action(Character& caster, Enemy& target)
 {
     caster.add_debuff(debuff_);
 }
+    */

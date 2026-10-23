@@ -1,8 +1,11 @@
 #ifndef C_H
 #define C_H
 
+#pragma once
+
 #include <string>
-#include <vector>
+#include <memory>
+
 #include "spell.h"
 #include "utility.h"
 #include "ability.h"
@@ -30,10 +33,8 @@ class Character
 
         std::vector<Ability> skill_list_;
 
-        std::vector<DmgSpell> dmg_spells_;
-        std::vector<HealSpell> heal_spells_;
-        std::vector<BuffSpell> buff_spells_;
-        std::vector<DebuffSpell> debuff_spells_;
+
+        std::vector<std::unique_ptr<Spell>> spells_;
 
         std::vector<Buff> active_buffs_;
         std::vector<Buff> active_debuffs_;
@@ -87,28 +88,8 @@ class Character
         int get_skill_list_size();
         const Ability& get_skill(int index);
 
-
-        void get_dmg_spell_list() const;
-        void add_dmg_spell(DmgSpell& spell);
-        int get_dmg_list_size();
-        const DmgSpell& get_dmg_spell(int index) const;
-
-        void get_heal_spell_list() const;
-        void add_heal_spell(HealSpell& spell);
-        int get_heal_list_size();
-        const HealSpell& get_heal_spell(int index) const;
-
-        void get_buff_spell_list() const;
-        void add_buff_spell(BuffSpell& spell);
-        int get_buff_list_size();
-        const BuffSpell& get_buff_spell(int index) const;
-
-        void get_debuff_spell_list() const;
-        void add_debuff_spell(DebuffSpell& spell);
-        int get_debuff_list_size();
-        const DebuffSpell& get_debuff_spell(int index) const;
-
-        void get_all_spell_list() const;
+        void get_spell_list() const;
+        //void add_spell(std::unique_ptr spell)
 
         void add_buff(Buff buff);
         void add_debuff(Buff debuff);

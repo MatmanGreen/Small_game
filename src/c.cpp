@@ -136,57 +136,12 @@ int Character::get_skill_list_size(){return skill_list_.size();}
 const Ability& Character::get_skill(int index) {return skill_list_[index];}
 
 
-// Spells 
-void Character::get_dmg_spell_list() const
+void Character::get_spell_list() const
 {
-    for(size_t i = 0; i < dmg_spells_.size(); i++)
+    for (size_t i = 0; i < spells_.size(); i++)
     {
-        cout << i << ": " << dmg_spells_[i].get_name() << endl;
+        cout << i << ": " <<spells_[i]->get_name() << endl;
     }
-}
-void Character::add_dmg_spell(DmgSpell& spell){dmg_spells_.push_back(spell);}
-int Character::get_dmg_list_size(){return dmg_spells_.size();}
-const DmgSpell& Character::get_dmg_spell(int index) const{return dmg_spells_[index];}
-
-void Character::get_heal_spell_list() const
-{
-    for(size_t i = 0; i < heal_spells_.size(); i++)
-    {
-        cout << i << ": " << heal_spells_[i].get_name() << endl;
-    }
-}
-void Character::add_heal_spell(HealSpell& spell){heal_spells_.push_back(spell);}
-int Character::get_heal_list_size(){return heal_spells_.size();}
-const HealSpell& Character::get_heal_spell(int index) const{return heal_spells_[index];}
-
-void Character::get_buff_spell_list() const
-{
-    for(size_t i = 0; i < buff_spells_.size(); i++)
-    {
-        cout << i << ": " << buff_spells_[i].get_name() << endl;
-    }
-}
-void Character::add_buff_spell(BuffSpell& spell){buff_spells_.push_back(spell);}
-int Character::get_buff_list_size(){return buff_spells_.size();}
-const BuffSpell& Character::get_buff_spell(int index) const{return buff_spells_[index];}
-
-void Character::get_debuff_spell_list() const
-{
-    for(size_t i = 0; i < debuff_spells_.size(); i++)
-    {
-        cout << i << ": " << debuff_spells_[i].get_name() << endl;
-    }
-}
-void Character::add_debuff_spell(DebuffSpell& spell){debuff_spells_.push_back(spell);}
-int Character::get_debuff_list_size(){return debuff_spells_.size();}
-const DebuffSpell& Character::get_debuff_spell(int index) const{return debuff_spells_[index];}
-
-void Character::get_all_spell_list() const
-{
-    get_dmg_spell_list();
-    get_heal_spell_list();
-    get_buff_spell_list();
-    get_debuff_spell_list();
 }
 
 void Character::add_buff(Buff buff) {active_buffs_.push_back(buff);}

@@ -26,7 +26,7 @@ class Buff
 class Spell
 {
     protected:
-        std::string name_;
+        std::string name_; 
         std::string cast_text_;
         std::string description_;
         int value_;
@@ -38,6 +38,8 @@ class Spell
             int cost, 
             float chance
             );
+
+        virtual ~Spell() = default;
 
         std::string get_name() const;
         int get_value() const;
@@ -73,7 +75,7 @@ class HealSpell : public Spell
 
         virtual void action(Character& caster, Enemy& target) override;
 };
-
+/*
 class BuffSpell : public Spell
 {
     private:
@@ -109,5 +111,5 @@ class DebuffSpell : public Spell
         Buff& get_debuff() const;
         void action(Character& caster, Enemy& target);        
 };
-
+*/
 #endif

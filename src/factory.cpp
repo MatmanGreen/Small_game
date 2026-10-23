@@ -3,24 +3,25 @@
 
 std::vector<Enemy> create_monsters()
 {
-    return
-    {
-        Enemy ("A nice Devil",
-                Artwork::DEVIL,
-                40, 10, 30,
-                6, 2, 5
-                ),
-        Enemy ("Endboss",
-                Artwork::EARTHDRAGON,
-                1000, 999, 999,
-                999, 999, 999, 99
-                ),
-        Enemy ("Goofy Dragon",
-                Artwork::GOOFYDRAGON,
-                1, 1, 1,
-                1, 1, 1, 1
-            ),
-    };
+    std::vector<Enemy> monsters;
+    monsters.reserve(3);
+
+    monsters.emplace_back(
+        "A nice Devil", Artwork::DEVIL,
+        40, 10, 30, 6, 2, 5
+    );
+
+    monsters.emplace_back(
+        "Endboss", Artwork::EARTHDRAGON,
+        1000, 999, 999, 999, 999, 999, 99
+    );
+
+    monsters.emplace_back(
+        "Goofy Dragon", Artwork::GOOFYDRAGON,
+        1, 1, 1, 1, 1, 1, 1
+    );
+
+    return monsters;
 }
 
 //std::vector<Buff> all_buffs

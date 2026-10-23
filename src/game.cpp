@@ -11,7 +11,7 @@ void clear()
     cout << "\033[2J\033[H";
 }
 
-inline string char_stats(Character& character)
+inline string char_stats(const Character& character)
 {
     return character.get_name() + ":\n" + 
     "[hp] " + to_string(character.get_hp()) + "\n" + 
@@ -49,6 +49,7 @@ void use_ability(Character& attacker, Enemy& target)
 
 void cast_spell(Character& caster, Enemy& target)
 {
+    /*
     int index = 0;
     int spell_type = 0;
 
@@ -142,6 +143,7 @@ void cast_spell(Character& caster, Enemy& target)
                 cout << "Index not in range" << endl;
                 break;
     }
+                */
 }
 
 void action(Character& attacker, Enemy& target)

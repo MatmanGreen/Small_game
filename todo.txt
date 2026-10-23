@@ -26,4 +26,4 @@ Item
 
 Done:
     ~ Potion class
-    ~ general spell vector with std::unique_ptr and std::make_unique
+    ~ general spell vector with std::unique_ptr and std::make_unique                   
